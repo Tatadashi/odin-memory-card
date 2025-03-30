@@ -1,0 +1,32 @@
+Top section
+- Left
+    - Title
+    - Instructions
+- Right (pos abs?)
+    - score (curr)
+    - high score
+
+Main section
+    - 16 (or 32) total, 4 width, 4 (or 8) height card component
+    - card component
+        - img
+        - name
+        - id (i think)
+        - onclick randomize
+    - useEffect (dependency click)p
+        - i think has set of card id represent curr score
+        - check set.has(clicked id)
+            - if yes
+                - check if high score > curr score
+                    - if yes: set high score to curr score (prob convert num to str)
+                - reset curr score and set to 0 and empty
+            - if no: add id to set
+            - bonus (if score == max, change to '32(max)' )
+
+PokeApi
+    - https://bulbapedia.bulbagarden.net/wiki/Electric_rodents + mimikyu (morpeko divided to 2)
+    - maybe shiny variants too
+    - use official art and name
+    - 16 (or 32) total, 4 width, 4 (or 8) height
+    - pokemon-species/mimikyu -> official art
+    - any credits have to read

@@ -1,0 +1,25 @@
+div.top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+div.top h1 {
+    margin: 0;
+}
+
+div.top h4 {
+    font-weight: normal;
+    margin: 0;
+}
+
+div.topLeft {
+    display: flex;
+    flex-direction: column;
+}
+
+div.topRight {
+    display: flex;
+    flex-direction: column;
+}
