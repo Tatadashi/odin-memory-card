@@ -1,11 +1,3 @@
-Top section
-- Left
-    - Title
-    - Instructions
-- Right (pos abs?)
-    - score (curr)
-    - high score
-
 Main section
     - 16 (or 32) total, 4 width, 4 (or 8) height card component
     - card component
