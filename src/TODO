@@ -1,5 +1,4 @@
 Main section
-    - 16 (or 32) total, 4 width, 4 (or 8) height card component
     - card component
         - img
         - name
@@ -14,11 +13,3 @@ Main section
                 - reset curr score and set to 0 and empty
             - if no: add id to set
             - bonus (if score == max, change to '32(max)' )
-
-PokeApi
-    - https://bulbapedia.bulbagarden.net/wiki/Electric_rodents + mimikyu (morpeko divided to 2)
-    - maybe shiny variants too
-    - use official art and name
-    - 16 (or 32) total, 4 width, 4 (or 8) height
-    - pokemon-species/mimikyu -> official art
-    - any credits have to read
