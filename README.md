@@ -3,6 +3,8 @@ https://www.theodinproject.com/lessons/node-path-react-new-memory-card
 
 API: PokéAPI - https://pokeapi.co/docs/v2#pokemon-section
 
+Idk why the imgs on PokéAPI have different sizing for some of the shinies to regular
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

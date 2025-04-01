@@ -1,15 +1,3 @@
-Main section
-    - card component
-        - img
-        - name
-        - id (i think)
-        - onclick randomize
-    - useEffect (dependency click)p
-        - i think has set of card id represent curr score
-        - check set.has(clicked id)
-            - if yes
-                - check if high score > curr score
-                    - if yes: set high score to curr score (prob convert num to str)
-                - reset curr score and set to 0 and empty
-            - if no: add id to set
-            - bonus (if score == max, change to '32(max)' )
+            onclick (tabIndex and space/enter)
+
+            bonus (work onTap, not sure if already applies onclick, prob works)

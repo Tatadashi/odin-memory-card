@@ -232,83 +232,102 @@ function App() {
       src: null,
     },
   ]);
-
-  async function fetchPokemonImg(name, isShiny, isOtherVariety) {
-    try {
-      const shinyText = isShiny ? "Shiny " : "";
-      const alolanText = name === "raichu" && isOtherVariety ? "Alolan " : "";
-      const modeText = getModeText(name, isOtherVariety);
-      const pokemonImgSrc = await fetch(
-        `https://pokeapi.co/api/v2/pokemon-species/${name}`
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          return !isOtherVariety
-            ? data["varieties"]["0"]["pokemon"]["url"]
-            : data["varieties"]["1"]["pokemon"]["url"];
-        })
-        .then(
-          async (data) =>
-            await fetch(data)
-              .then((response) => response.json())
-              .then((data) => {
-                return !isShiny
-                  ? data["sprites"]["other"]["official-artwork"][
-                      "front_default"
-                    ]
-                  : data["sprites"]["other"]["official-artwork"]["front_shiny"];
-              })
-        );
-      localStorage.setItem(
-        `${shinyText}${alolanText}${name}${modeText}`,
-        pokemonImgSrc
-      );
-    } catch {
-      alert("Pokemon not Found");
-    }
-  }
-
-  function getModeText(name, isOtherVariety) {
-    if (name === "morpeko") {
-      if (isOtherVariety) {
-        return " (Hangry Mode)";
-      }
-      return " (Full Belly Mode)";
-    }
-    return "";
-  }
-
-  function addPokemonSrc(pokemon) {
-    const shinyText = pokemon.isShiny ? "Shiny " : "";
-    const alolanText =
-      pokemon.name === "raichu" && pokemon.isOtherVariety ? "Alolan " : "";
-    const modeText = getModeText(pokemon.name, pokemon.isOtherVariety);
-    if (
-      localStorage.getItem(
-        `${shinyText}${alolanText}${pokemon.name}${modeText}`
-      ) === null
-    ) {
-      fetchPokemonImg(pokemon.name, pokemon.isShiny, pokemon.isOtherVariety);
-    }
-
-    pokemon.src = localStorage.getItem(
-      `${shinyText}${alolanText}${pokemon.name}${modeText}`
-    );
-  }
-
-  //temp
+  
   useEffect(() => {
+    async function fetchPokemonImg(name, isShiny, isOtherVariety) {
+      try {
+        const shinyText = isShiny ? "Shiny " : "";
+        const alolanText = name === "raichu" && isOtherVariety ? "Alolan " : "";
+        const modeText = getModeText(name, isOtherVariety);
+        const pokemonImgSrc = await fetch(
+          `https://pokeapi.co/api/v2/pokemon-species/${name}`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            return !isOtherVariety
+              ? data["varieties"]["0"]["pokemon"]["url"]
+              : data["varieties"]["1"]["pokemon"]["url"];
+          })
+          .then(
+            async (data) =>
+              await fetch(data)
+                .then((response) => response.json())
+                .then((data) => {
+                  return !isShiny
+                    ? data["sprites"]["other"]["official-artwork"][
+                        "front_default"
+                      ]
+                    : data["sprites"]["other"]["official-artwork"]["front_shiny"];
+                })
+          );
+        localStorage.setItem(
+          `${shinyText}${alolanText}${name}${modeText}`,
+          pokemonImgSrc
+        );
+      } catch {
+        alert("Pokemon not Found");
+      }
+    }
+  
+    function getModeText(name, isOtherVariety) {
+      if (name === "morpeko") {
+        if (isOtherVariety) {
+          return " (Hangry Mode)";
+        }
+        return " (Full Belly Mode)";
+      }
+      return "";
+    }
+    
+    function addPokemonSrc(pokemon) {
+      const shinyText = pokemon.isShiny ? "Shiny " : "";
+      const alolanText =
+      pokemon.name === "raichu" && pokemon.isOtherVariety ? "Alolan " : "";
+      const modeText = getModeText(pokemon.name, pokemon.isOtherVariety);
+      if (
+        localStorage.getItem(
+          `${shinyText}${alolanText}${pokemon.name}${modeText}`
+        ) === null
+      ) {
+        fetchPokemonImg(pokemon.name, pokemon.isShiny, pokemon.isOtherVariety);
+      }
+  
+      pokemon.src = localStorage.getItem(
+        `${shinyText}${alolanText}${pokemon.name}${modeText}`
+      );
+    }
+
+    function areSame(arr1, arr2) {
+      for (let i = 0; i < arr1.length; i++) {
+        if (arr1[i].src !== arr2[i].src) {
+          return false;
+        }
+      return true;
+      }
+    }
+    
     const copy = JSON.parse(JSON.stringify(pokemonList));
     copy.forEach((pokemon) => {
       addPokemonSrc(pokemon);
     });
 
-    setPokemonList(copy);
-  }, []);
+    if (!areSame(copy, pokemonList)) {
+      setPokemonList(copy);
+    }
+  }, [pokemonList]);
+
+  const scoreText = score.length < 32 ? score.length : `${score.length} (max)`;
   return (
     <>
-      <Top score={score.length} highScore={highScore} />
-      <Main pokemonList={pokemonList} />
+      <Top score={scoreText} highScore={highScore} />
+      <Main
+        pokemonList={pokemonList}
+        setPokemonList={setPokemonList}
+        score={score}
+        setScore={setScore}
+        highScore={highScore}
+        setHighScore={setHighScore}
+      />
     </>
   );
 }
