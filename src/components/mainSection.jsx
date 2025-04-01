@@ -34,9 +34,10 @@ export default function Main({
   }
   return (
     <div className="main">
-      {pokemonList.map((pokemon) => (
+      {pokemonList.map((pokemon, index) => (
         <Card
           key={pokemon.id}
+          tabIndex={index + 1}
           id={pokemon.id}
           pokemonList={pokemonList}
           setPokemonList={setPokemonList}

@@ -232,7 +232,7 @@ function App() {
       src: null,
     },
   ]);
-  
+
   useEffect(() => {
     async function fetchPokemonImg(name, isShiny, isOtherVariety) {
       try {
@@ -257,7 +257,9 @@ function App() {
                     ? data["sprites"]["other"]["official-artwork"][
                         "front_default"
                       ]
-                    : data["sprites"]["other"]["official-artwork"]["front_shiny"];
+                    : data["sprites"]["other"]["official-artwork"][
+                        "front_shiny"
+                      ];
                 })
           );
         localStorage.setItem(
@@ -268,7 +270,7 @@ function App() {
         alert("Pokemon not Found");
       }
     }
-  
+
     function getModeText(name, isOtherVariety) {
       if (name === "morpeko") {
         if (isOtherVariety) {
@@ -278,11 +280,11 @@ function App() {
       }
       return "";
     }
-    
+
     function addPokemonSrc(pokemon) {
       const shinyText = pokemon.isShiny ? "Shiny " : "";
       const alolanText =
-      pokemon.name === "raichu" && pokemon.isOtherVariety ? "Alolan " : "";
+        pokemon.name === "raichu" && pokemon.isOtherVariety ? "Alolan " : "";
       const modeText = getModeText(pokemon.name, pokemon.isOtherVariety);
       if (
         localStorage.getItem(
@@ -291,7 +293,7 @@ function App() {
       ) {
         fetchPokemonImg(pokemon.name, pokemon.isShiny, pokemon.isOtherVariety);
       }
-  
+
       pokemon.src = localStorage.getItem(
         `${shinyText}${alolanText}${pokemon.name}${modeText}`
       );
@@ -302,10 +304,10 @@ function App() {
         if (arr1[i].src !== arr2[i].src) {
           return false;
         }
-      return true;
+        return true;
       }
     }
-    
+
     const copy = JSON.parse(JSON.stringify(pokemonList));
     copy.forEach((pokemon) => {
       addPokemonSrc(pokemon);

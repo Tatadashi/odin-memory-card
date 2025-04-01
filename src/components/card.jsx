@@ -2,6 +2,7 @@ import "../styles/card.css";
 
 export default function Card({
   id,
+  tabIndex,
   pokemonList,
   setPokemonList,
   score,
@@ -41,8 +42,22 @@ export default function Card({
 
     setPokemonList(copy);
   }
+
+  const keyPressed = (e) => {
+    if (e.key === " " || e.key === "Enter") {
+      document.activeElement.blur();
+      addScoreOnClick();
+    }
+  };
   return (
-    <div className="card" onClick={addScoreOnClick}>
+    <div
+      className="card"
+      onClick={addScoreOnClick}
+      onKeyDown={(e) => {
+        keyPressed(e);
+      }}
+      tabIndex={tabIndex}
+    >
       <img src={src} alt={name} />
       <h3>{name}</h3>
     </div>

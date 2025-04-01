@@ -19,7 +19,7 @@ body {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color:  #242424;
+    color: #242424;
     background-color: rgba(255, 232, 101, 0.87);
   }
 }

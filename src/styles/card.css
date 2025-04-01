@@ -13,6 +13,10 @@ div.card:hover {
   border-color: rgba(255, 232, 101, 0.87);
 }
 
+div.card:focus {
+  outline: rgba(255, 232, 101, 0.87) solid 5px;
+}
+
 div.card img {
   height: 70%;
   width: 90%;
@@ -30,5 +34,9 @@ div.card h3 {
 
   div.card:hover {
     border-color: #525252;
+  }
+
+  div.card:focus {
+    outline: #525252 solid 5px;
   }
 }
