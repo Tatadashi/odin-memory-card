@@ -3,7 +3,7 @@ https://www.theodinproject.com/lessons/node-path-react-new-memory-card
 
 API: PokéAPI - https://pokeapi.co/docs/v2#pokemon-section
 
-Idk why the imgs on PokéAPI have different sizing for some of the shinies to regular
+Idk why the imgs on PokéAPI have different sizing for some of the shinies to regular. On First Launch, img don't load til interaction bcz localStorage not exist yet (a Vercel thing)
 
 # React + Vite
 
